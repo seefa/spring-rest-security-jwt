@@ -35,9 +35,11 @@ public class JwtController {
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> authentication(@RequestBody JwtRequest jwtRequest) throws Exception {
-        authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
 
+
+        authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
+
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
@@ -48,7 +50,7 @@ public class JwtController {
         } catch (DisabledException e) {
             throw new Exception("User Disabled", e);
         } catch (BadCredentialsException e) {
-            throw new Exception("Invalid credential", e);
+            throw new Exception("Bad Credential", e);
         }
     }
 

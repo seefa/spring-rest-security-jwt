@@ -17,7 +17,7 @@ public class Application {
 //		return builder.sources(Application.class);
 //	}
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 }
